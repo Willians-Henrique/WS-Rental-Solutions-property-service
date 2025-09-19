@@ -11,35 +11,35 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/propertyowner")
+@RequestMapping("/property")
 public class PropertyOwnerController {
 
     private final PropertyOwnerService propertyOwnerService;
 
-    @PostMapping
+    @PostMapping("/owner")
     public ResponseEntity<?> createPropertyOwner(@RequestBody PropertyOwnerDTO dto) {
         PropertyOwner propertyOwner = propertyOwnerService.createPropertyOwner(dto);
         return ResponseEntity.ok(propertyOwner);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/owner/{id}")
     public ResponseEntity<PropertyOwner> updatePropertyOwner(@PathVariable UUID id, @RequestBody PropertyOwnerDTO propertyOwnerDTO) {
         PropertyOwner updatedPropertyOwner = propertyOwnerService.updatePropertyOwner(id, propertyOwnerDTO);
         return ResponseEntity.ok(updatedPropertyOwner);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/owner/{id}")
     public ResponseEntity<?> deletePropertyOwner(@PathVariable UUID id) {
         propertyOwnerService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/owner/{id}")
     public PropertyOwnerDTO findPropertyOwnerById (@PathVariable UUID id) {
         return propertyOwnerService.findById(id);
     }
 
-    @GetMapping("/list")
+    @GetMapping("/owner/list")
     public ResponseEntity<?> findAllPropertyOwners() {
         return ResponseEntity.ok(propertyOwnerService.findAll());
     }
